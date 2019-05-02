@@ -1,0 +1,38 @@
+From feabf875277b6d16ae3a3857b71dd2ba24a15be7 Mon Sep 17 00:00:00 2001
+From: Eric Kinzie <ekinzie@labn.net>
+Date: Mon, 6 May 2019 11:02:30 -0400
+Subject: [PATCH 2/3] install test vectors in $(pkgdatadir) instead of
+ $(bindir)
+
+Adjust Makefile.am so that non-executables do not end up in the bin
+directory.
+---
+ apps/tests/Makefile.am | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/apps/tests/Makefile.am b/apps/tests/Makefile.am
+index eac635b..cc460d1 100644
+--- a/apps/tests/Makefile.am
++++ b/apps/tests/Makefile.am
+@@ -53,12 +53,12 @@ musdk_sam_kat_SOURCES += ../common/sam_utils.c
+ 
+ musdk_sam_kat_LDADD = $(top_builddir)/src/libmusdk.la
+ 
+-bin_SCRIPTS = sam_kat_suite/3des_tests.txt sam_kat_suite/aes_tests.txt
+-bin_SCRIPTS += sam_kat_suite/aes_chain_test.txt sam_kat_suite/aes_gcm.txt
+-bin_SCRIPTS += sam_kat_suite/aes_ctr.txt sam_kat_suite/aes_gmac.txt
+-bin_SCRIPTS += sam_kat_suite/hash_only.txt
+-bin_SCRIPTS += sam_kat_suite/hmac_tests.txt sam_kat_suite/hmac_tests_large.txt
+-bin_SCRIPTS += sam_kat_suite/aes_sha1_multi.txt sam_kat_suite/aes_sha1_1440_multi.txt
++dist_pkgdata_DATA = sam_kat_suite/3des_tests.txt sam_kat_suite/aes_tests.txt
++dist_pkgdata_DATA += sam_kat_suite/aes_chain_test.txt sam_kat_suite/aes_gcm.txt
++dist_pkgdata_DATA += sam_kat_suite/aes_ctr.txt sam_kat_suite/aes_gmac.txt
++dist_pkgdata_DATA += sam_kat_suite/hash_only.txt
++dist_pkgdata_DATA += sam_kat_suite/hmac_tests.txt sam_kat_suite/hmac_tests_large.txt
++dist_pkgdata_DATA += sam_kat_suite/aes_sha1_multi.txt sam_kat_suite/aes_sha1_1440_multi.txt
+ 
+ 
+ bin_PROGRAMS += musdk_sam_single
+-- 
+2.7.4
+

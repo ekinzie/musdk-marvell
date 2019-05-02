@@ -1,0 +1,3 @@
+0001-remove-hard-coded-toolchain-binary-names.patch
+0002-install-test-vectors-in-pkgdatadir-instead-of-bindir.patch
+0003-add-modules_install-target-to-modules-Makefile.patch

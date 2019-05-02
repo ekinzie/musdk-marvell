@@ -1,0 +1,35 @@
+From e96e5fe944e469bda804bce17ea694ff0b36b775 Mon Sep 17 00:00:00 2001
+From: Eric Kinzie <ekinzie@labn.net>
+Date: Fri, 3 May 2019 17:17:02 -0400
+Subject: [PATCH 1/3] remove hard-coded toolchain binary names
+
+Fix configure.ac so that the resulting configure script can setup
+a cross-compile environment as usual.  Assuming the arm64 toolchain
+is in the shell's search path, this is sufficient to build the
+libraries:
+
+  % ./configure --host=aarch64-linux-gnu
+  % make
+
+This is one step toward software packaging.
+---
+ configure.ac | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 997cc32..734160c 100755
+--- a/configure.ac
++++ b/configure.ac
+@@ -182,9 +182,6 @@ CFLAGS+="-pthread "
+ CFLAGS+="$MUSDK_CFLAGS $SAM_CFLAGS"
+ LDFLAGS+="$SAM_LDFLAGS"
+ LIBS+="$SAM_LIBS"
+-CC=${CROSS_COMPILE}gcc
+-LD=${CROSS_COMPILE}ld
+-AR=${CROSS_COMPILE}ar
+ 
+ # define LIBTOOL (for libraries)
+ LT_INIT
+-- 
+2.7.4
+

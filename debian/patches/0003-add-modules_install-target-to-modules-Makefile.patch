@@ -1,0 +1,129 @@
+From b4f6c40c794f75aa34553fadbb96634f75e867a4 Mon Sep 17 00:00:00 2001
+From: Eric Kinzie <ekinzie@labn.net>
+Date: Mon, 6 May 2019 13:11:46 -0400
+Subject: [PATCH 3/3] add modules_install target to modules/*/Makefile
+
+This will be used while creating packages.  Call the kernel-provided
+modules_install target and optionally pass along the name of a directory
+into which the modules should be installed.
+---
+ modules/dmax2/Makefile | 4 ++++
+ modules/neta/Makefile  | 4 ++++
+ modules/pp2/Makefile   | 4 ++++
+ modules/sam/Makefile   | 4 ++++
+ modules/uio/Makefile   | 4 ++++
+ 5 files changed, 20 insertions(+)
+
+diff --git a/modules/dmax2/Makefile b/modules/dmax2/Makefile
+index cf93f0b..37fc858 100644
+--- a/modules/dmax2/Makefile
++++ b/modules/dmax2/Makefile
+@@ -31,6 +31,7 @@
+ #****************************************************************************/
+ 
+ KDIR ?=
++INSTALL_MOD_PATH ?= /
+ 
+ CFLAGS_mv_dmax2_uio.o := -DDEBUG
+ ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+@@ -40,6 +41,9 @@ obj-m += mv_dmax2_uio.o
+ default all:
+ 	make -C $(KDIR) M=$$PWD modules
+ 
++modules_install: all
++	make -C $(KDIR) M=$$PWD INSTALL_MOD_PATH=$(INSTALL_MOD_PATH) modules_install
++
+ clean:
+ 	make -C $(KDIR) M=$$PWD clean
+ 
+diff --git a/modules/neta/Makefile b/modules/neta/Makefile
+index efbf886..f453d9b 100644
+--- a/modules/neta/Makefile
++++ b/modules/neta/Makefile
+@@ -31,6 +31,7 @@
+ #****************************************************************************/
+ 
+ KDIR ?=
++INSTALL_MOD_PATH ?= /
+ 
+ CFLAGS_mv_neta_uio.o := -DDEBUG
+ ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+@@ -40,6 +41,9 @@ obj-m += mv_neta_uio.o
+ default all:
+ 	make -C $(KDIR) M=$$PWD modules
+ 
++modules_install: all
++	make -C $(KDIR) M=$$PWD INSTALL_MOD_PATH=$(INSTALL_MOD_PATH) modules_install
++
+ clean:
+ 	make -C $(KDIR) M=$$PWD clean
+ 
+diff --git a/modules/pp2/Makefile b/modules/pp2/Makefile
+index 0c7e4b9..ea37b04 100644
+--- a/modules/pp2/Makefile
++++ b/modules/pp2/Makefile
+@@ -31,6 +31,7 @@
+ #****************************************************************************/
+ 
+ KDIR ?=
++INSTALL_MOD_PATH ?= /
+ 
+ CFLAGS_mv_pp_uio.o := -DDEBUG
+ ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+@@ -40,6 +41,9 @@ obj-m += mv_pp_uio.o
+ default all:
+ 	make -C $(KDIR) M=$$PWD modules
+ 
++modules_install: all
++	make -C $(KDIR) M=$$PWD INSTALL_MOD_PATH=$(INSTALL_MOD_PATH) modules_install
++
+ clean:
+ 	make -C $(KDIR) M=$$PWD clean
+ 
+diff --git a/modules/sam/Makefile b/modules/sam/Makefile
+index 6a095e6..73b4b98 100644
+--- a/modules/sam/Makefile
++++ b/modules/sam/Makefile
+@@ -31,6 +31,7 @@
+ #****************************************************************************/
+ 
+ KDIR ?=
++INSTALL_MOD_PATH ?= /
+ 
+ CFLAGS_mv_sam_uio.o := -DDEBUG
+ ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+@@ -40,6 +41,9 @@ obj-m += mv_sam_uio.o
+ default all:
+ 	make -C $(KDIR) M=$$PWD modules
+ 
++modules_install: all
++	make -C $(KDIR) M=$$PWD INSTALL_MOD_PATH=$(INSTALL_MOD_PATH) modules_install
++
+ clean:
+ 	make -C $(KDIR) M=$$PWD clean
+ 
+diff --git a/modules/uio/Makefile b/modules/uio/Makefile
+index dc092ac..f5e9efa 100644
+--- a/modules/uio/Makefile
++++ b/modules/uio/Makefile
+@@ -31,6 +31,7 @@
+ #****************************************************************************/
+ 
+ KDIR ?=
++INSTALL_MOD_PATH ?= /
+ 
+ CFLAGS_musdk_uio.o := -DDEBUG
+ ccflags-y := -std=gnu99 -Wno-declaration-after-statement
+@@ -40,6 +41,9 @@ obj-m += musdk_uio.o
+ default all:
+ 	make -C $(KDIR) M=$$PWD modules
+ 
++modules_install: all
++	make -C $(KDIR) M=$$PWD INSTALL_MOD_PATH=$(INSTALL_MOD_PATH) modules_install
++
+ clean:
+ 	make -C $(KDIR) M=$$PWD clean
+ 
+-- 
+2.7.4
+

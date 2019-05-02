@@ -1,0 +1,47 @@
+Source: libmusdk
+Priority: optional
+Maintainer: Eric Kinzie <ekinzie@labn.net>
+Build-Depends: debhelper (>=9),autotools-dev, quilt, autoconf, automake, libtool
+Standards-Version: 3.9.6
+Section: libs
+Homepage: https://github.com/MarvellEmbeddedProcessors
+
+Package: libmusdk-dev
+Section: libdevel
+Architecture: arm64
+Depends: libmusdk1 (= ${binary:Version}), ${misc:Depends}
+Description: Marvell User-Space SDK development files
+ Marvell User-Space SDK (MUSDK) is a light-weight user-space I/O driver
+ for Marvell's Embedded Networking SoC's. The MUSDK library provides
+ a simple and direct access to Marvell's SoC blocks for networking
+ applications and networking infrastructure.
+
+Package: libmusdk1
+Architecture: arm64
+Depends: ${shlibs:Depends}, ${misc:Depends}, kmod
+Description: Marvell User-Space SDK library and kernel modules
+ Marvell User-Space SDK (MUSDK) is a light-weight user-space I/O driver
+ for Marvell's Embedded Networking SoC's. The MUSDK library provides
+ a simple and direct access to Marvell's SoC blocks for networking
+ applications and networking infrastructure.
+
+Package: libmusdk-examples
+Section: libdevel
+Architecture: arm64
+Depends: libmusdk1 (= ${binary:Version}), ${misc:Depends}
+Description: Marvell User-Space SDK example programs
+ Marvell User-Space SDK (MUSDK) is a light-weight user-space I/O driver
+ for Marvell's Embedded Networking SoC's. The MUSDK library provides
+ a simple and direct access to Marvell's SoC blocks for networking
+ applications and networking infrastructure.  This package contains
+ examples, including known-answer tests (KAT).
+
+Package: libmusdk-kernel
+Section: libdevel
+Architecture: arm64
+Description: Marvell User-Space SDK example programs
+ Marvell User-Space SDK (MUSDK) is a light-weight user-space I/O driver
+ for Marvell's Embedded Networking SoC's. The MUSDK library provides
+ a simple and direct access to Marvell's SoC blocks for networking
+ applications and networking infrastructure.  This package contains
+ kernel modules necessary to allow userspace access to the hardware.
